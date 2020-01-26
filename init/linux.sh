@@ -1,7 +1,12 @@
 #!/bin/bash
 
 get_docker() {
-	sh ./get-docker.sh
+	read -r -p "Install Docker? [y/N] " answer
+	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
+		echo -e "\nSkipping Docker setup...\n"
+	else
+		sh ./get-docker.sh
+	fi
 }
 
 enable_docker() {
@@ -22,7 +27,7 @@ enable_docker() {
 configure_docker() {
 	read -r -p "Manage Docker as a non-root user? [y/N] " answer
 	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
-		echo -e "\nSkipping Docker non-root configuration...\n"
+		echo -e "\nSkipping Docker non-root configuration..."
 	else
 		echo -e "\nAdding 'docker' group..."
 		sudo groupadd docker
@@ -30,7 +35,7 @@ configure_docker() {
 		echo -e "\nAdding user $USER to 'docker' group..."
 		sudo usermod -aG docker "$USER"
 
-		echo -e "DONE.\n"
+		echo -e "\nDone. Logout and back in to refresh groups.\n"
 	fi
 }
 
