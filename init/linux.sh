@@ -48,7 +48,7 @@ install_dockerc() {
 		sudo chmod +x /usr/local/bin/docker-compose
 	fi
 	}
-	
+
 get_docker
 enable_docker
 configure_docker
