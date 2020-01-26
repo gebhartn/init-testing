@@ -39,6 +39,17 @@ configure_docker() {
 	fi
 }
 
+install_dockerc() {
+	read -r -p "Install docker-compose? [y/N] " answer
+	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
+		echo -e "\nSkipping docker-compose install"
+	else
+		sudo curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+		sudo chmod +x /usr/local/bin/docker-compose
+	fi
+	}
+	
 get_docker
 enable_docker
 configure_docker
+install_dockerc
