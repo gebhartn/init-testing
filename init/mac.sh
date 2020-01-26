@@ -22,7 +22,7 @@ install_packages() {
 setup_homebrew() {
 	read -r -p "\nInstall Homebrew? [y/N] " answer
 	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
-		echo -e "\nSkipping Docker systemctl setup...\n"
+		echo -e "\nSkipping Homebrew setup...\n"
 	else
 		if [[ ! $(which brew) ]] && [[ ! $(brew --version &> /dev/null) ]]; then
 			echo -e "\nCould not find existing HOMEBREW installation."
