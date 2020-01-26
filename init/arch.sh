@@ -1,22 +1,27 @@
 #!/bin/bash
 
 install_packages() {
-	echo -e "\nInstalling required packages for Arch..."
+	read -r -p "Install Docker? [y/N] " answer
+	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
+		echo -e "\nSkipping Docker Install..."
+	else
+		echo -e "\nInstalling required packages for Arch..."
 
-	declare -a packages=(
-	"docker"
-	"docker-compose"
-)
+		declare -a packages=(
+		"docker"
+		"docker-compose"
+		)
 
-sudo pacman -Syu ${packages[@]}
+	sudo pacman -Syu ${packages[@]}
 
-echo -e "DONE.\n"
+	echo -e "DONE.\n"
+	fi
 }
 
 enable_docker() {
 	read -r -p "Start and enable Docker? [y/N] " answer
 	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
-		echo -e "\nSkipping Docker systemctl setup...\n"
+		echo -e "\nSkipping Docker systemctl setup..."
 	else
 		echo -e "\nStarting Docker through systemctl..."
 		systemctl start docker
@@ -31,7 +36,7 @@ enable_docker() {
 configure_docker() {
 	read -r -p "Manage Docker as a non-root user? [y/N] " answer
 	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
-		echo -e "\nSkipping Docker non-root configuration...\n"
+		echo -e "\nSkipping Docker non-root configuration..."
 	else
 		echo -e "\nAdding 'docker' group..."
 		sudo groupadd docker
@@ -39,28 +44,10 @@ configure_docker() {
 		echo -e "\nAdding user $USER to 'docker' group..."
 		sudo usermod -aG docker "$USER"
 
-		echo -e "DONE.\n"
-	fi
-}
-
-run_mc() {
-	read -r -p "Start Mission Control container? [y/N] " answer
-	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
-		echo -e "\nSkipping docker-compose up --build -d..."
-	else
-		echo -e "\nRunning Mission Control backend"
-		cd ../ && \
-		echo -e "\nSourcing .env"
-		source sourceme.sh && \
-		echo -e "\nStarting container..."
-		docker-compose up --build -d
-		echo
-		echo -e "\nRun 'prisma deploy' & 'prisma seed' from"
-		echo -e "\nthe root directory to get started"
+		echo -e "\nDone. Logout and back in to refresh groups.\n"
 	fi
 }
 
 install_packages
 enable_docker
 configure_docker
-run_mc
