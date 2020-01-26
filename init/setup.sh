@@ -13,7 +13,8 @@ confirm() {
 
 declare -a options=(
 	"MacOS"
-	"Linux"
+	"Ubuntu / Debian / CentOS / Fedora"
+	"Arch"
 	"Exit"
 )
 
@@ -30,6 +31,10 @@ do
 			;;
 		"Linux")
 			confirm "linux"
+			break
+			;;
+		"Arch")
+			confirm "arch"
 			break
 			;;
 		"Exit")
