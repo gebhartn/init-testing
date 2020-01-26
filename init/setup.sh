@@ -1,5 +1,7 @@
+#!/bin/bash
+
 confirm() {
-	read -r -p "Proceed with setup? [y/N]"
+	read -r -p "Proceed with setup? [y/N]" answer
 	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
 		echo "Cancelling setup"
 		echo "Now exiting"
@@ -14,6 +16,10 @@ declare -a options=(
 	"Linux"
 	"Exit"
 )
+
+COLUMNS=12
+
+PS3="Please choose an option: "
 
 select opt in "${options[@]}"
 do
