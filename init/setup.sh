@@ -1,7 +1,7 @@
 #!/bin/bash
 
 confirm() {
-	read -r -p "Proceed with setup? [y/N]" answer
+	read -r -p "Proceed with setup? [y/N] " answer
 	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
 		echo "Cancelling setup"
 		echo "Now exiting"
@@ -12,9 +12,10 @@ confirm() {
 }
 
 declare -a options=(
-	"MacOS"
-	"Ubuntu / Debian / CentOS / Fedora"
-	"Arch"
+	"Configure for MacOS"
+	"Configure for Ubuntu / Debian / CentOS / Fedora"
+	"Configure for Arch"
+	"Deploy Mission Control"
 	"Exit"
 )
 
@@ -25,16 +26,20 @@ PS3="Please choose an option: "
 select opt in "${options[@]}"
 do
 	case $opt in
-		"MacOS")
+		"Configure for MacOS")
 			confirm "mac"
 			break
 			;;
-		"Ubuntu / Debian / CentOS / Fedora")
+		"Configure for Ubuntu / Debian / CentOS / Fedora")
 			confirm "linux"
 			break
 			;;
-		"Arch")
+		"Configure for Arch")
 			confirm "arch"
+			break
+			;;
+		"Deploy Mission Control")
+			confirm "mc"
 			break
 			;;
 		"Exit")
