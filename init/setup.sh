@@ -26,10 +26,10 @@ select opt in "${options[@]}"
 do
 	case $opt in
 		"MacOS")
-			confirm "macos"
+			confirm "mac"
 			break
 			;;
-		"Linux")
+		"Ubuntu / Debian / CentOS / Fedora")
 			confirm "linux"
 			break
 			;;
