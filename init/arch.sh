@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 install_packages() {
 	echo -e "\nInstalling required packages for Arch..."
@@ -43,6 +43,24 @@ configure_docker() {
 	fi
 }
 
+run_mc() {
+	read -r -p "Start Mission Control container? [y/N] " answer
+	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
+		echo -e "\nSkipping docker-compose up --build -d..."
+	else
+		echo -e "\nRunning Mission Control backend"
+		cd ../ && \
+		echo -e "\nSourcing .env"
+		source sourceme.sh && \
+		echo -e "\nStarting container..."
+		docker-compose up --build -d
+		echo
+		echo -e "\nRun 'prisma deploy' & 'prisma seed' from"
+		echo -e "\nthe root directory to get started"
+	fi
+}
+
 install_packages
 enable_docker
 configure_docker
+run_mc
