@@ -1,4 +1,5 @@
 #!/bin/bash
+. mc.sh
 
 install_packages() {
 	read -r -p "\nInstall Docker & docker-compose? [y/N] " answer
@@ -29,24 +30,6 @@ setup_homebrew() {
 			echo -e "\nNow installing..."
 			/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 		fi
-	fi
-}
-
-
-run_mc() {
-	read -r -p "Start Mission Control container? [y/N] " answer
-	if [[ "$answer" != y ]] && [[ "$answer" != Y ]]; then
-		echo -e "\nSkipping docker-compose up --build -d..."
-	else
-		echo -e "\nRunning Mission Control backend"
-		cd ../ && \
-		echo -e "\nSourcing .env"
-		source sourceme.sh && \
-		echo -e "\nStarting container..."
-		docker-compose up --build -d
-		echo
-		echo -e "\nRun 'prisma deploy' & 'prisma seed' from"
-		echo -e "\nthe root directory to get started"
 	fi
 }
 
