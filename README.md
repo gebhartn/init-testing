@@ -13,3 +13,7 @@ cd init && make
 ```
 3. Select your OS [MacOS, Arch, Ubuntu, Debian, CentOS, Fedora]
 4. Automagical!
+
+#### Get Docker
+
+The Ubuntu / Debian / CentOS / Fedora installation uses the `get.docker.com` install script which can be found [here](https://github.com/docker/docker-install).
