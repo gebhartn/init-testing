@@ -1,5 +1,4 @@
 #!/bin/bash
-. mc.sh
 
 install_packages() {
 	read -r -p "\nInstall Docker & docker-compose? [y/N] " answer
@@ -38,7 +37,10 @@ setup_macos() {
 
 	setup_homebrew
 	install_packages
-	run_mc
+
+	open /Applications/Docker.app
+	echo -e "\nStarting the Docker daemon, this could take a while"
+	echo -e "Check your task bar to make sure it's running before continuing"
 }
 
 setup_macos
