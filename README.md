@@ -27,7 +27,7 @@ cd init && make
 
 #### Contributors / Testers:
 
-Special thanks to [ElijahMcKay](github.com/ElijahMcKay), [fresocodes](github.com/frescodes), & [judson00](github.com/judson00).
+Special thanks to [ElijahMcKay](https://github.com/ElijahMcKay), [fresocodes](https://github.com/frescodes), & [judson00](https://github.com/judson00).
 
 ---
 
