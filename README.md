@@ -25,6 +25,10 @@ cd init && make
 
 * Message Kevin on Slack
 
+#### Contributors / Testers:
+
+Special thanks to [ElijahMcKay](github.com/ElijahMcKay), [fresocodes](github.com/frescodes), & [judson00](github.com/judson00).
+
 ---
 
 The Ubuntu / Debian / CentOS / Fedora installation uses the `get.docker.com` install script which can be found [here](https://github.com/docker/docker-install).
